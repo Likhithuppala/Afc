@@ -8,17 +8,17 @@ const LandingPage = () => {
   return (
     <div className="landing-page">
       <div className="overlay" />
-      <img
-        src={clglogo}
-        alt="AIMIT Logo"
-        className="aimit-logo"
-      />
-      <Button
-        text="Order Now"
-        onClick={() => navigate('/login')}
-        width="13.75rem"
-        height="2.6875rem"
-      />
+      <div className="main-layout">
+        <img
+          src={clglogo}
+          alt="AIMIT Logo"
+          className="aimit-logo"
+        />
+        <Button
+          text="Order Now"
+          onClick={() => navigate('/login')}
+        />
+      </div>
     </div>
   );
 };

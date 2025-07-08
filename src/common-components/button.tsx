@@ -15,8 +15,8 @@ const Button = ({
   onClick,
   type = 'primary',
   icon,
-  width = 'auto',
-  height = 'auto',
+  width = '',
+  height = '',
   className = '',
 }: ButtonProps) => {
   return (
