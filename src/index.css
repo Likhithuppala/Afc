@@ -1,0 +1,13 @@
+* {
+  font-family: 'Montserrat', sans-serif;
+}
+body {
+  overflow-y: scroll; /* allow scroll */
+  scrollbar-width: none; /* Firefox */
+  margin: 0px !important;
+  height: 100% !important;
+}
+
+body::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Edge */
+}
