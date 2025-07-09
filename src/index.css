@@ -2,7 +2,7 @@
   font-family: 'Montserrat', sans-serif;
 }
 body {
-  overflow-y: scroll; /* allow scroll */
+  overflow: hidden;
   scrollbar-width: none; /* Firefox */
   margin: 0px !important;
   height: 100% !important;
