@@ -10,15 +10,7 @@ interface ButtonProps {
   className?: string;
 }
 
-const Button = ({
-  text,
-  onClick,
-  type = 'primary',
-  icon,
-  width = '',
-  height = '',
-  className = '',
-}: ButtonProps) => {
+const Button = ({text,onClick,type = 'primary',icon,width = '',height = '',className = '',}: ButtonProps) => {
   return (
     <button
       className={`btn btn-${type} ${className}`}
