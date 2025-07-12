@@ -1,0 +1,30 @@
+.filter-category-scroll {
+  display: flex;
+  gap: 0.5rem;
+  overflow-x: auto;
+  padding-bottom: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.filter-tag {
+  padding: 0.4rem 1rem;
+  font-size: 0.9rem;
+  border-radius: 20px;
+  background-color: #333;
+  color: #ccc;
+  border: none;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.filter-tag.active {
+  background-color: #00c853;
+  color: white;
+}
+
+@media (max-width: 520px) {
+  .filter-tag {
+    font-size: 0.8rem;
+    padding: 0.3rem 0.8rem;
+  }
+}

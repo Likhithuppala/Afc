@@ -1,16 +1,19 @@
 import './home-page.css';
 import Button from '../../common-components/button';
 import clglogo from '../../assets/clg-logo.png';
+import { useNavigate } from 'react-router-dom';
 
 
 const HomePage = () => {
+    const navigate = useNavigate();
+
     const handleFoodCourtClick = () => {
-        console.log('Navigating to Food Court Menu');
+        navigate('/fc-menu');
         // navigate('/food-court');
     };
 
     const handleSavouryClick = () => {
-        console.log('Navigating to Savoury Menu');
+        navigate('/savoury-menu');
         // navigate('/savoury');
     };
 
@@ -43,3 +46,7 @@ const HomePage = () => {
 };
 
 export default HomePage;
+
+
+
+
