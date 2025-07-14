@@ -1,36 +1,67 @@
-import './food-item-card.css';
 import { useState } from 'react';
-import CheckboxWithQuantity from '../common-components/checkbox';
+import './food-item-card.css';
 
-type Props = {
+interface Props {
   id: number;
   name: string;
   price: number;
   image: string;
-  isSelected?: boolean;
-  quantity?: number;
-};
+  quantity: number;
+  isSelected: boolean;
+  onQuantityChange?: (id: number, newQty: number) => void;
+  onSelectChange?: (id: number, checked: boolean) => void;
+}
 
-const FoodItemCard = ({ id: _id, name, price, image, isSelected = false, quantity = 1 }: Props) => {
-  const [selected, setSelected] = useState(isSelected);
+const FoodItemCard = ({
+  id,
+  name,
+  price,
+  image,
+  quantity,
+  isSelected,
+  onQuantityChange,
+  onSelectChange
+}: Props) => {
   const [qty, setQty] = useState(quantity);
+
+  const handleDecrease = () => {
+    if (qty > 1) {
+      const newQty = qty - 1;
+      setQty(newQty);
+      onQuantityChange?.(id, newQty);
+    }
+  };
+
+  const handleIncrease = () => {
+    const newQty = qty + 1;
+    setQty(newQty);
+    onQuantityChange?.(id, newQty);
+  };
+
+  const handleCheckboxChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    onSelectChange?.(id, e.target.checked);
+  };
 
   return (
     <div className="food-card">
-      <img src={image} alt={name} className="food-image" />
-      <div className="food-details">
-        <div className="food-info">
-          <h3 className="food-name">{name}</h3>
-          <p className="food-price">₹{price}</p>
-        </div>
-
-        <CheckboxWithQuantity
-          selected={selected}
-          onCheckChange={setSelected}
-          quantity={qty}
-          onQtyChange={setQty}
-        />
+      <div className="food-image-container">
+        <img src={image} alt={name} className="food-image" />
       </div>
+      <div className="food-details">
+        <div className="food-name">{name}</div>
+        <div className="food-price">₹{price}</div>
+      </div>
+      <div className="food-quantity">
+        <button onClick={handleDecrease}>-</button>
+        <span>{qty}</span>
+        <button onClick={handleIncrease}>+</button>
+      </div>
+      <input
+        type="checkbox"
+        checked={isSelected}
+        onChange={handleCheckboxChange}
+        className="food-checkbox"
+      />
     </div>
   );
 };

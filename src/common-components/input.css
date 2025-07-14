@@ -14,3 +14,8 @@
     font-size: 0.95rem;
   }
 }
+
+.custom-search-input input::placeholder {
+  color: white !important;
+  opacity: 0.9;
+}
