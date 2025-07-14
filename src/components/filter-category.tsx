@@ -1,24 +1,22 @@
-// src/components/FilterCategory.tsx
-
 import { Tag } from 'antd';
 import './filter-category.css';
 
-type Props = {
+interface Props {
   categories: string[];
   selected: string;
-  onSelect: (category: string) => void;
-};
+  onSelect: (value: string) => void;
+}
 
 const FilterCategory = ({ categories, selected, onSelect }: Props) => {
   return (
-    <div className="filter-category-scroll">
-      {categories.map((cat) => (
+    <div className="filter-category-wrapper">
+      {categories.map((category) => (
         <Tag
-          key={cat}
-          className={`filter-tag ${selected === cat ? 'active' : ''}`}
-          onClick={() => onSelect(cat)}
+          key={category}
+          className={`filter-tag ${selected === category ? 'selected' : ''}`}
+          onClick={() => onSelect(category)}
         >
-          {cat}
+          {category}
         </Tag>
       ))}
     </div>

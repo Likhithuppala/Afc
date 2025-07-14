@@ -1,14 +1,20 @@
+// src/pages/user/SavouryMenuPage.tsx
 import './savoury-menu.css';
 import { useState } from 'react';
 import { ArrowLeftOutlined } from '@ant-design/icons';
 import { useNavigate } from 'react-router-dom';
+import { Dropdown, Menu } from 'antd';
 
 import SpecialCarousel from '../../components/special-carousel';
 import FoodItemCard from '../../components/food-item-card';
 import FilterCategory from '../../components/filter-category';
 import SearchInput from '../../common-components/search-input';
 
-// dummyFoodItems
+const specialItems = [
+  { id: 101, name: 'Chicken kabab', image: 'src/assets/kabab.png' },
+  { id: 102, name: 'Gobi Rice', image: 'src/assets/gobi.png' },
+  { id: 103, name: 'Noodles', image: 'src/assets/noodles.png' },
+];
 
 const foodItems = [
   {
@@ -19,17 +25,15 @@ const foodItems = [
     category: 'Lunch',
     isSelected: false,
     quantity: 2,
-    isSpecial: false,
   },
   {
     id: 2,
     name: 'Chicken Kabab',
     price: 25,
-    image: '/src/assets/kabab.png',
+    image: 'src/assets/kabab.png',
     category: 'Snacks',
     isSelected: true,
     quantity: 2,
-    isSpecial: true, 
   },
   {
     id: 3,
@@ -39,7 +43,6 @@ const foodItems = [
     category: 'Brunch',
     isSelected: false,
     quantity: 2,
-    isSpecial: true, 
   },
   {
     id: 4,
@@ -49,11 +52,8 @@ const foodItems = [
     category: 'Snacks',
     isSelected: true,
     quantity: 2,
-    isSpecial: true, 
   },
 ];
-
-const specialItems = foodItems.filter((item) => item.isSpecial);
 
 const categories = ['All', 'Brunch', 'Lunch', 'Snacks', 'Drinks'];
 
@@ -68,12 +68,24 @@ const SavouryMenuPage = () => {
       (selectedCategory === 'All' || item.category === selectedCategory)
   );
 
+  const handleMenuClick = ({ key }: { key: string }) => {
+    if (key === 'foodcourt') navigate('/foodcourt');
+  };
+
+  const menu = (
+    <Menu onClick={handleMenuClick}>
+      <Menu.Item key="foodcourt">Food Court</Menu.Item>
+    </Menu>
+  );
+
   return (
     <div className="savoury-page">
       {/* Header */}
       <div className="savoury-header">
         <ArrowLeftOutlined className="back-icon" onClick={() => navigate(-1)} />
-        <h2 className="savoury-title">Savoury</h2>
+        <Dropdown overlay={menu} placement="bottomRight" arrow>
+          <h2 className="savoury-title">Savoury ▾</h2>
+        </Dropdown>
       </div>
 
       {/* Search */}
@@ -109,9 +121,7 @@ const SavouryMenuPage = () => {
       </div>
 
       {/* View Cart */}
-      <div className="view-cart-wrapper">
-        <button className="view-cart-button">View Cart</button>
-      </div>
+      <button className="view-cart-button">View Cart</button>
     </div>
   );
 };
