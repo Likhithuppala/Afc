@@ -1,27 +1,32 @@
+/* Base wrapper */
 .custom-search-input {
-  background-color: #111;
-  color: white;
+  background-color: transparent;
   border: 1px solid #555;
   padding: 0.6rem 1rem;
   border-radius: 12px;
   width: 100%;
   font-size: 0.95rem;
+  color: white; /* default white */
+  transition: background-color 0.2s ease, color 0.2s ease;
 }
 
+/* When focused, make bg white and text black */
+.custom-search-input.focused {
+  background-color: white;
+  color: black;
+}
+
+/* Inner input inherits */
 .custom-search-input input {
-  background-color: transparent !important;
-  color: white !important;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  color: inherit; /* dynamic color from wrapper */
+  font-family: 'Montserrat', sans-serif;
 }
 
-.custom-search-input:hover,
-.custom-search-input:focus-within {
-  border-color: #555;
-  box-shadow: none;
-}
-
-/* Responsive */
-@media (max-width: 768px) {
-  .custom-search-input {
-    font-size: 0.9rem;
-  }
+/* Placeholder always white */
+.custom-search-input input::placeholder {
+  color: white;
+  opacity: 0.8;
 }

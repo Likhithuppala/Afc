@@ -63,6 +63,7 @@ const FoodItemCard = ({
         className="food-checkbox"
       />
     </div>
+
   );
 };
 

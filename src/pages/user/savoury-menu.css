@@ -86,7 +86,7 @@
 
 .view-cart-button {
   position: fixed;
-  bottom: 1.5rem;
+  bottom: 0.75rem;
   left: 50%;
   transform: translateX(-50%);
   background-color: #00c853;
