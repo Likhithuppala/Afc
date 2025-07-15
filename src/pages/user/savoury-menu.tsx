@@ -1,4 +1,3 @@
-// src/pages/user/SavouryMenuPage.tsx
 import './savoury-menu.css';
 import { useState } from 'react';
 import { ArrowLeftOutlined } from '@ant-design/icons';
@@ -10,48 +9,55 @@ import FoodItemCard from '../../components/food-item-card';
 import FilterCategory from '../../components/filter-category';
 import SearchInput from '../../common-components/search-input';
 
+import kababImage from '../../assets/kabab.png';
+import gobiImage from '../../assets/gobi.png';
+import noodlesImage from '../../assets/noodles.png';
+import omeletteImage from '../../assets/omelette.png';
+
+//  Special carousel items
 const specialItems = [
-  { id: 101, name: 'Chicken kabab', image: 'src/assets/kabab.png' },
-  { id: 102, name: 'Gobi Rice', image: 'src/assets/gobi.png' },
-  { id: 103, name: 'Noodles', image: 'src/assets/noodles.png' },
+  { id: 101, name: 'Chicken kabab', image: kababImage },
+  { id: 102, name: 'Gobi Rice', image: gobiImage },
+  { id: 103, name: 'Noodles', image: noodlesImage },
 ];
 
-const foodItems = [
+//  Food list
+const initialItems = [
   {
     id: 1,
     name: 'Chicken Noodles',
     price: 50,
-    image: 'src/assets/noodles.png',
+    image: noodlesImage,
     category: 'Lunch',
     isSelected: false,
-    quantity: 2,
+    quantity: 1,
   },
   {
     id: 2,
     name: 'Chicken Kabab',
     price: 25,
-    image: 'src/assets/kabab.png',
+    image: kababImage,
     category: 'Snacks',
     isSelected: true,
-    quantity: 2,
+    quantity: 1,
   },
   {
     id: 3,
     name: 'Omelette',
     price: 20,
-    image: 'src/assets/omelette.png',
+    image: omeletteImage,
     category: 'Brunch',
     isSelected: false,
-    quantity: 2,
+    quantity: 1,
   },
   {
     id: 4,
     name: 'Gobi Manchurian',
     price: 40,
-    image: 'src/assets/gobi.png',
+    image: gobiImage,
     category: 'Snacks',
     isSelected: true,
-    quantity: 2,
+    quantity: 1,
   },
 ];
 
@@ -61,13 +67,34 @@ const SavouryMenuPage = () => {
   const navigate = useNavigate();
   const [search, setSearch] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('All');
+  const [items, setItems] = useState(initialItems);
 
-  const filteredItems = foodItems.filter(
+  //  Filter by search and category
+  const filteredItems = items.filter(
     (item) =>
       item.name.toLowerCase().includes(search.toLowerCase()) &&
       (selectedCategory === 'All' || item.category === selectedCategory)
   );
 
+  //  Checkbox toggle
+  const handleSelectChange = (id: number, checked: boolean) => {
+    setItems((prev) =>
+      prev.map((item) =>
+        item.id === id ? { ...item, isSelected: checked } : item
+      )
+    );
+  };
+
+  //  Quantity update
+  const handleQuantityChange = (id: number, newQty: number) => {
+    setItems((prev) =>
+      prev.map((item) =>
+        item.id === id ? { ...item, quantity: newQty } : item
+      )
+    );
+  };
+
+  //  Dropdown navigation
   const handleMenuClick = ({ key }: { key: string }) => {
     if (key === 'foodcourt') navigate('/foodcourt');
   };
@@ -88,7 +115,7 @@ const SavouryMenuPage = () => {
         </Dropdown>
       </div>
 
-      {/* Search */}
+      {/* Search and Filter */}
       <div className="menu-actions">
         <SearchInput
           value={search}
@@ -102,10 +129,10 @@ const SavouryMenuPage = () => {
         />
       </div>
 
-      {/* Specials */}
+      {/* Special Carousel */}
       <SpecialCarousel items={specialItems} />
 
-      {/* Food List */}
+      {/* Food Items */}
       <div className="food-list">
         {filteredItems.map((item) => (
           <FoodItemCard
@@ -116,12 +143,16 @@ const SavouryMenuPage = () => {
             image={item.image}
             isSelected={item.isSelected}
             quantity={item.quantity}
+            onSelectChange={handleSelectChange}
+            onQuantityChange={handleQuantityChange}
           />
         ))}
       </div>
 
       {/* View Cart */}
-      <button className="view-cart-button">View Cart</button>
+      <button className="view-cart-button" onClick={() => navigate('/view-cart')}>
+        View Cart
+      </button>
     </div>
   );
 };
