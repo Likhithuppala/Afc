@@ -33,7 +33,7 @@ const SpecialCarousel = ({ items }: Props) => {
           {
             breakpoint: 768, // tablets and below
             settings: {
-              slidesToShow: 2.5,
+              slidesToShow: 2.6,
             },
           },
         ]}
