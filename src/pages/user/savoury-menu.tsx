@@ -96,7 +96,7 @@ const SavouryMenuPage = () => {
 
   //  Dropdown navigation
   const handleMenuClick = ({ key }: { key: string }) => {
-    if (key === 'foodcourt') navigate('/foodcourt');
+    if (key === 'foodcourt') navigate('/fc-menu');
   };
 
   const menu = (
@@ -135,18 +135,20 @@ const SavouryMenuPage = () => {
       {/* Food Items */}
       <div className="food-list">
         {filteredItems.map((item) => (
-          <FoodItemCard
-            key={item.id}
-            id={item.id}
-            name={item.name}
-            price={item.price}
-            image={item.image}
-            isSelected={item.isSelected}
-            quantity={item.quantity}
-            onSelectChange={handleSelectChange}
-            onQuantityChange={handleQuantityChange}
-          />
-        ))}
+              <FoodItemCard
+                key={item.id}
+                id={item.id}
+                name={item.name}
+                price={item.price}
+                image={item.image}
+                isSelected={item.isSelected}
+                quantity={item.quantity}
+                onSelectChange={handleSelectChange}
+                onQuantityChange={handleQuantityChange}
+                isBookmarked={false} // ✅ explicitly disable
+              />
+            ))
+          }
       </div>
 
       {/* View Cart */}
