@@ -8,6 +8,7 @@ interface Props {
   image: string;
   quantity: number;
   isSelected: boolean;
+  isBookmarked?: boolean;
   onQuantityChange?: (id: number, newQty: number) => void;
   onSelectChange?: (id: number, checked: boolean) => void;
 }
@@ -19,6 +20,7 @@ const FoodItemCard = ({
   image,
   quantity,
   isSelected,
+  isBookmarked =true,
   onQuantityChange,
   onSelectChange
 }: Props) => {
@@ -45,6 +47,7 @@ const FoodItemCard = ({
   return (
     <div className="food-card">
       <div className="food-image-container">
+        {isBookmarked && <div className="bookmark" />}
         <img src={image} alt={name} className="food-image" />
       </div>
       <div className="food-details">
@@ -63,7 +66,6 @@ const FoodItemCard = ({
         className="food-checkbox"
       />
     </div>
-
   );
 };
 
