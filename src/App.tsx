@@ -5,6 +5,8 @@ import OtpPage from './pages/user/otp';
 import HomePage from './pages/user/home-page';
 import SavouryMenuPage from './pages/user/savoury-menu';
 import FoodCourtMenuPage from './pages/user/fc-menu';
+import CartPage from './pages/user/cart-page';
+
 
 const App = () => {
   return (
@@ -16,6 +18,7 @@ const App = () => {
         <Route path="/home-page" element={<HomePage />} />
         <Route path="/savoury-menu" element={<SavouryMenuPage />} />
         <Route path="/fc-menu" element={<FoodCourtMenuPage />} />
+        <Route path="/view-cart" element={<CartPage />} />
       </Routes>
     </Router>
   );
