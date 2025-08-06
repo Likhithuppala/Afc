@@ -88,17 +88,11 @@ const SavouryMenuPage = () => {
         item.id === id ? { ...item, quantity: qty } : item
       )
     );
-
-<<<<<<< Updated upstream
-  //  Dropdown navigation
-  const handleMenuClick = ({ key }: { key: string }) => {
-    if (key === 'foodcourt') navigate('/foodcourt');
-=======
+    
     const item = items.find(i => i.id === id && i.isSelected);
     if (item) {
       dispatch(addOrUpdateItem({ ...item, quantity: qty, type: 'savoury' }));
     }
->>>>>>> Stashed changes
   };
 
   const menu = (
@@ -130,29 +124,18 @@ const SavouryMenuPage = () => {
       <SpecialCarousel items={specialItems} />
 
       <div className="food-list">
-<<<<<<< Updated upstream
-        {filteredItems.map((item) => (
-=======
         {filteredItems.map(item => (
->>>>>>> Stashed changes
           <FoodItemCard
             key={item.id}
             id={item.id}
             name={item.name}
             price={item.price}
             image={item.image}
-<<<<<<< Updated upstream
-            isSelected={item.isSelected}
-            quantity={item.quantity}
-            onSelectChange={handleSelectChange}
-            onQuantityChange={handleQuantityChange}
-=======
             isSelected={item.isSelected ?? false}
             quantity={item.quantity}
             onSelectChange={handleSelectChange}
             onQuantityChange={handleQuantityChange}
             isBookmarked={item.isBookmarked}
->>>>>>> Stashed changes
           />
         ))}
       </div>
