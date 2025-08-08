@@ -1,0 +1,32 @@
+/* Base wrapper */
+.custom-search-input {
+  background-color: transparent;
+  border: 1px solid #555;
+  padding: 0.6rem 1rem;
+  border-radius: 12px;
+  width: 100%;
+  font-size: 0.95rem;
+  color: white; /* default white */
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+/* When focused, make bg white and text black */
+.custom-search-input.focused {
+  background-color: white;
+  color: black;
+}
+
+/* Inner input inherits */
+.custom-search-input input {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  color: inherit; /* dynamic color from wrapper */
+  font-family: 'Montserrat', sans-serif;
+}
+
+/* Placeholder always white */
+.custom-search-input input::placeholder {
+  color: white;
+  opacity: 0.8;
+}
